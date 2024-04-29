@@ -347,10 +347,8 @@ if(NP2SRV_HAVE_SYSTEMD)
     install(FILES ${PROJECT_BINARY_DIR}/netopeer2-server.service DESTINATION ${SYSTEMD_UNIT_DIR})
 endif()
 
-# copy pam service to /etc/pam.d
-if(EXISTS "/etc/pam.d")
-    install(FILES "${CMAKE_SOURCE_DIR}/pam/netopeer2.conf" DESTINATION "/etc/pam.d")
-endif()
+# copy pam service to data_dir/etc/pam.d
+install(FILES "${CMAKE_SOURCE_DIR}/pam/netopeer2.conf" DESTINATION ${DATA_DIR}/etc)
 
 if(SYSREPO_SETUP)
     install(CODE "
